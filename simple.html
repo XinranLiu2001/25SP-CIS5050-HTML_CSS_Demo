@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- <link rel="stylesheet" href="style.css"> -->
+        <!-- To display the heading on the web tab -->
+        <title>Simple PennCloud Mailbox</title>
+        <!-- style section, for css styling -->
+        <style> 
+            #logo{
+                width: 150px;
+            }
+            .logo{
+                width: 100px;
+            }
+        </style>
+    </head>
+   
+    
+    <!-- body section -->
+    <body>
+        <img id="logo" src="UniversityofPennsylvania.png">
+        <h1>PennCloud Webmail</h1>
+        <h2>Sending an email</h2>
+        <p>This is a feature for <br> Xinran Liu</p>
+        <p>to send emails</p>
+        <a href="https://www.google.com">Go to Google</a>
+        <h2>Form</h2>
+        <form action="/submit" method="post" id="webmailForm">
+    
+            <!-- Text input -->
+            <p>Mail From: xinran@penncloud.com</p>
+            <label for="name">To:</label>
+            <input type="text" id="name" name="name" required><br><br> <!--The form cannot be submitted if this field-->
+        
+            <!-- File input -->
+            <label for="fileUpload">Upload File As Attachment:</label>
+            <input type="file" id="fileUpload" name="fileUpload"><br><br>
+        
+            <!-- Textarea -->
+            <label for="content">Email Content:</label><br>
+            <textarea id="content" name="content" rows="4" cols="40"></textarea><br><br>
+        
+            <!-- Checkbox -->
+            <input type="checkbox" id="anoymous" name="anoymous" value="yes">
+            <label for="anoymous">Anoymous Email?</label><br><br>
+        
+            <!-- Radio buttons -->
+            <label>Choose As Radio:</label><br>
+            <input type="radio" id="radio1" name="radio" value="1">
+            <label for="radio1">111</label><br>
+            <input type="radio" id="radio2" name="radio" value="2">
+            <label for="radio2">222</label><br><br>
+        
+            <!-- Select dropdown -->
+            <label for="dropdown">dropdown:</label>
+            <select id="dropdown" name="dropdown">
+              <option value="o1">option 1</option>
+              <option value="o2">option 2</option>
+              <option value="o3">option 3</option>
+            </select><br><br>
+        
+            <!-- Submit -->
+            <input type="submit" value="Submit">
+        
+          </form>
+          <img class="logo" src="UniversityofPennsylvania.png">
+
+          <!-- javascript code blocks -->
+          <script>
+            console.log("Hello CIS 5050!")
+            document.getElementById('webmailForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const form = e.target;
+                const formData = new FormData(form);
+
+                console.log("Form Data Submitted:");
+                for (const [name, value] of formData.entries()) {
+                    if (value instanceof File) {
+                        console.log(`${name}:`, value.name || 'No file selected');
+                    } else {
+                        console.log(`${name}:`, value);
+                    }
+                }
+            });
+          </script>
+    </body>
+</html>
+

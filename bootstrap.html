@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bootstrap PennCloud Mailbox</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            #logo {
+                width: 150px;
+            }
+            .logo {
+                width: 100px;
+            }
+        </style>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+
+    <body>
+        <div class="container d-flex flex-column align-items-center justify-content-center min-vh-100">
+            <img id="logo" src="UniversityofPennsylvania.png" alt="UPenn Logo" class="mb-3">
+            <h1 class="text-center">PennCloud Webmail</h1>
+            <h2 class="text-center mb-4">Sending an Email</h2>
+            
+            <p class="text-center">This is a feature for <strong>Xinran Liu</strong> to send emails</p>
+            <a href="https://www.google.com" class="btn btn-outline-primary mb-4">Go to Google</a>
+
+            <div class="w-100" style="max-width: 600px;">
+                <form action="/submit" method="post" id="webmailForm" enctype="multipart/form-data" class="border p-4 rounded shadow">
+                    <p><strong>Mail From:</strong> xinran@penncloud.com</p>
+
+                    <div class="mb-3">
+                        <label for="name" class="form-label">To:</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="fileUpload" class="form-label">Upload File As Attachment:</label>
+                        <input type="file" id="fileUpload" name="fileUpload" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="content" class="form-label">Email Content:</label>
+                        <textarea id="content" name="content" rows="4" class="form-control"></textarea>
+                    </div>
+
+                    <div class="form-check mb-3">
+                        <input type="checkbox" id="anoymous" name="anoymous" value="yes" class="form-check-input">
+                        <label for="anoymous" class="form-check-label">Anonymous Email?</label>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Choose As Radio:</label><br>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" id="radio1" name="radio" value="1" class="form-check-input">
+                            <label for="radio1" class="form-check-label">111</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" id="radio2" name="radio" value="2" class="form-check-input" checked>
+                            <label for="radio2" class="form-check-label">222</label>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="dropdown" class="form-label">Dropdown:</label>
+                        <select id="dropdown" name="dropdown" class="form-select">
+                            <option value="o1" selected>Option 1</option>
+                            <option value="o2">Option 2</option>
+                            <option value="o3">Option 3</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Submit</button>
+                </form>
+            </div>
+
+            <img class="logo mt-4" src="UniversityofPennsylvania.png" alt="UPenn Small Logo">
+        </div>
+        <script>
+            console.log("Hello CIS 5050!");
+            document.getElementById('webmailForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const form = e.target;
+                const formData = new FormData(form);
+
+                console.log("Form Data Submitted:");
+                for (const [name, value] of formData.entries()) {
+                    if (value instanceof File) {
+                        console.log(`${name}:`, value.name || 'No file selected');
+                    } else {
+                        console.log(`${name}:`, value);
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
